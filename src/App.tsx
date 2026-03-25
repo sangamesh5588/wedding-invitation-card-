@@ -10,6 +10,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import Countdown from './components/Countdown';
 import EventCard from './components/EventCard';
 import { INVITATION_DATA } from './constants';
+import { supabase } from './supabase';
 
 export default function App() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -35,24 +36,18 @@ export default function App() {
 
     setIsSending(true);
     try {
-      const response = await fetch('/api/send-wish', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(wishForm),
-      });
+      const { error } = await supabase
+        .from('wishes')
+        .insert([{ name: wishForm.name, message: wishForm.message }]);
 
-      if (response.ok) {
-        setIsWishSent(true);
-        setWishForm({ name: '', message: '' });
-        setTimeout(() => setIsWishSent(false), 5000);
-      } else {
-        console.error('Failed to save wish to database');
-        alert('Sorry, there was an error saving your wish. Please try again later.');
-      }
+      if (error) throw error;
+
+      setIsWishSent(true);
+      setWishForm({ name: '', message: '' });
+      setTimeout(() => setIsWishSent(false), 5000);
     } catch (error) {
       console.error('Error sending wish:', error);
+      alert('Sorry, there was an error saving your wish. Please try again later.');
     } finally {
       setIsSending(false);
     }
@@ -259,7 +254,7 @@ Experience the full invitation here:
               />
               <div className="absolute inset-0 ring-1 ring-inset ring-white/20 rounded-3xl" />
             </div>
-            <p className="text-lg leading-relaxed text-text/70 font-accent max-w-lg mx-auto italic">
+            <p className="text-lg leading-relaxed text-text/70 font-accent max-w-lg mx-auto italic whitespace-pre-line text-center">
               "{INVITATION_DATA.welcome.content}"
             </p>
           </motion.div>

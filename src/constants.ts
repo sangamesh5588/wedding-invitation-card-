@@ -7,7 +7,7 @@ export const INVITATION_DATA: InvitationData = {
   heroImage: "/ring.png",
   welcome: {
     title: "A Warm Welcome",
-    content: "With the blessings of SMT. GIRIJA & SRI. MAHADEV. N and SMT. ROOPA. E & LATE SRI. MOHAN. T.N., we cordially invite you to witness the union of Hemanth and Priyanka. Your presence and blessings are the greatest gifts we could receive as we begin this new chapter together.",
+    content: "With the blessings of\nSmt. GIRIJA & Sri. MAHADEV. N\nand\nSmt. ROOPA. E & Late Sri. MOHAN. T.N.,\n\nWe cordially invite you to witness\nthe union of Hemanth and Priyanka.\n\nYour presence and blessings are\nthe greatest gifts we could receive\nas we begin this new chapter together.",
     image: "/gb.png"
   },
   venueImage: "/venue.png",
