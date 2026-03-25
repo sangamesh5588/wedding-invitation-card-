@@ -1,0 +1,41 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-serif: "Playfair Display", serif;
+  --font-body: "Inter", sans-serif;
+  --font-accent: "Cormorant Garamond", serif;
+
+  --color-primary: #8B5E3C; /* Warm Brown to complement peach */
+  --color-secondary: #FFEFDC; /* New Theme Color (Peach/Cream) */
+  --color-accent: #6B705C; /* Muted Olive */
+  --color-text: #432818; /* Deep Brown for text */
+}
+
+@layer base {
+  body {
+    @apply bg-secondary text-text font-body;
+  }
+  h1, h2, h3, h4 {
+    @apply font-serif;
+  }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+.bg-pattern {
+  background-image: radial-gradient(#8B5E3C 0.5px, transparent 0.5px);
+  background-size: 24px 24px;
+  opacity: 0.1;
+}
+
+.glass-card {
+  @apply bg-white/40 backdrop-blur-md border border-white/20 rounded-3xl;
+}
