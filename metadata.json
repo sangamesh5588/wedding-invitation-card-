@@ -1,0 +1,5 @@
+{
+  "name": "Hemanth & Priyanka Wedding Invitation",
+  "description": "A premium, animated digital wedding invitation with countdown, event details, and RSVP.",
+  "requestFramePermissions": ["geolocation"]
+}
