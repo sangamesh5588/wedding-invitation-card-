@@ -98,21 +98,26 @@ export default function App() {
   };
 
 
+  const shareMessage = `A beautiful beginning of a new journey \u{1F4AB}
+
+*${INVITATION_DATA.groom} \u{2764}\u{FE0F} ${INVITATION_DATA.bride}*
+
+You are warmly invited to celebrate with us.
+Experience the full invitation here:
+\u{1F517} ${window.location.href}`;
+
   const handleShare = async () => {
     const shareData = {
-      title: `${INVITATION_DATA.groom} & ${INVITATION_DATA.bride}'s Wedding Invitation`,
-      text: `You are cordially invited to the wedding of ${INVITATION_DATA.groom} & ${INVITATION_DATA.bride}.`,
-      url: window.location.href,
+      title: `${INVITATION_DATA.groom} & ${INVITATION_DATA.bride}'s Wedding`,
+      text: shareMessage,
     };
 
     if (navigator.share && navigator.canShare && navigator.canShare(shareData)) {
       try {
         await navigator.share(shareData);
       } catch (err) {
-        // Only log if it's not a user cancellation
         if (err instanceof Error && err.name !== 'AbortError') {
           console.error('Error sharing:', err);
-          // Fallback to clipboard if sharing fails (e.g. in some iframe contexts)
           copyToClipboard();
         }
       }
@@ -122,7 +127,7 @@ export default function App() {
   };
 
   const copyToClipboard = () => {
-    navigator.clipboard.writeText(window.location.href);
+    navigator.clipboard.writeText(shareMessage);
     setShowCopyToast(true);
     setTimeout(() => setShowCopyToast(false), 3000);
   };
