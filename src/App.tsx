@@ -15,6 +15,7 @@ import { supabase } from './supabase';
 export default function App() {
   const containerRef = useRef<HTMLDivElement>(null);
   const audioRef = useRef<HTMLAudioElement>(null);
+  const heroTouchStartY = useRef<number>(0);
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start start", "end end"]
@@ -165,13 +166,10 @@ Experience the full invitation here:
       {/* Hero Section */}
       <section
         className="relative h-[100dvh] flex flex-col items-center justify-center text-center px-6 overflow-hidden"
-        onTouchStart={(e) => {
-          (e.currentTarget as HTMLElement).dataset.touchY = String(e.touches[0].clientY);
-        }}
+        onTouchStart={(e) => { heroTouchStartY.current = e.touches[0].clientY; }}
         onTouchEnd={(e) => {
-          const startY = parseFloat((e.currentTarget as HTMLElement).dataset.touchY || '0');
-          const endY = e.changedTouches[0].clientY;
-          if (startY - endY > 40) {
+          const diff = heroTouchStartY.current - e.changedTouches[0].clientY;
+          if (diff > 40) {
             const next = document.querySelector('section:nth-of-type(2)') as HTMLElement;
             if (next) next.scrollIntoView({ behavior: 'smooth' });
             else window.scrollBy({ top: window.innerHeight * 0.9, behavior: 'smooth' });
