@@ -163,7 +163,7 @@ Experience the full invitation here:
       </motion.button>
 
       {/* Hero Section */}
-      <section className="relative h-screen flex flex-col items-center justify-center text-center px-6 overflow-hidden">
+      <section className="relative h-[100dvh] flex flex-col items-center justify-center text-center px-6 overflow-hidden">
         <motion.div 
           style={{ scale: heroScale, opacity: heroOpacity }}
           className="absolute inset-0 z-0"
@@ -211,21 +211,24 @@ Experience the full invitation here:
           </motion.div>
         </div>
 
-        {/* Scroll Down Indicator */}
+        {/* Scroll Down Indicator - Mouse style */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1, delay: 1.8 }}
-          className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1 text-white z-10 cursor-pointer"
+          className="absolute bottom-14 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-white z-10 cursor-pointer"
           onClick={() => window.scrollBy({ top: window.innerHeight * 0.6, behavior: 'smooth' })}
         >
-          <span className="text-xs uppercase tracking-widest drop-shadow-md">Scroll</span>
-          <motion.div
-            animate={{ y: [0, 8, 0] }}
-            transition={{ duration: 1.4, repeat: Infinity, ease: "easeInOut" }}
-          >
-            <ChevronDown size={24} strokeWidth={1.5} />
-          </motion.div>
+          <span className="text-[10px] uppercase tracking-widest drop-shadow-md opacity-80">Scroll</span>
+          {/* Mouse outline */}
+          <div className="w-6 h-10 rounded-full border-2 border-white/70 flex justify-center pt-1.5">
+            {/* Scroll wheel dot */}
+            <motion.div
+              className="w-1 h-2 bg-white rounded-full"
+              animate={{ y: [0, 10, 0], opacity: [1, 0, 1] }}
+              transition={{ duration: 1.6, repeat: Infinity, ease: "easeInOut" }}
+            />
+          </div>
         </motion.div>
       </section>
 
