@@ -163,7 +163,21 @@ Experience the full invitation here:
       </motion.button>
 
       {/* Hero Section */}
-      <section className="relative h-[100dvh] flex flex-col items-center justify-center text-center px-6 overflow-hidden">
+      <section
+        className="relative h-[100dvh] flex flex-col items-center justify-center text-center px-6 overflow-hidden"
+        onTouchStart={(e) => {
+          (e.currentTarget as HTMLElement).dataset.touchY = String(e.touches[0].clientY);
+        }}
+        onTouchEnd={(e) => {
+          const startY = parseFloat((e.currentTarget as HTMLElement).dataset.touchY || '0');
+          const endY = e.changedTouches[0].clientY;
+          if (startY - endY > 40) {
+            const next = document.querySelector('section:nth-of-type(2)') as HTMLElement;
+            if (next) next.scrollIntoView({ behavior: 'smooth' });
+            else window.scrollBy({ top: window.innerHeight * 0.9, behavior: 'smooth' });
+          }
+        }}
+      >
         <motion.div 
           style={{ scale: heroScale, opacity: heroOpacity }}
           className="absolute inset-0 z-0"
