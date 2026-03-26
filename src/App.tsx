@@ -167,9 +167,7 @@ Experience the full invitation here:
       <section
         className="relative h-[100dvh] flex flex-col items-center justify-center text-center px-6 overflow-hidden cursor-pointer"
         onClick={() => {
-          const next = document.querySelector('section:nth-of-type(2)') as HTMLElement;
-          if (next) next.scrollIntoView({ behavior: 'smooth' });
-          else window.scrollBy({ top: window.innerHeight * 0.9, behavior: 'smooth' });
+          document.getElementById('welcome')?.scrollIntoView({ behavior: 'smooth' });
         }}
       >
         <motion.div 
@@ -227,9 +225,7 @@ Experience the full invitation here:
           className="absolute bottom-14 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1 text-white z-10 select-none"
           onPointerDown={(e) => {
             e.preventDefault();
-            const next = document.querySelector('section:nth-of-type(2)') as HTMLElement;
-            if (next) next.scrollIntoView({ behavior: 'smooth' });
-            else window.scrollBy({ top: window.innerHeight * 0.9, behavior: 'smooth' });
+            document.getElementById('welcome')?.scrollIntoView({ behavior: 'smooth' });
           }}
         >
           <span className="text-[10px] uppercase tracking-widest drop-shadow-md opacity-70">Scroll</span>
@@ -246,7 +242,7 @@ Experience the full invitation here:
       <div className="relative z-10 max-w-2xl mx-auto px-6 pb-24 space-y-32">
         
         {/* Welcome Section */}
-        <section className="space-y-12">
+        <section id="welcome" className="pt-16 space-y-12">
           <motion.div
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
