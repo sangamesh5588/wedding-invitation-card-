@@ -245,25 +245,6 @@ Experience the full invitation here:
       {/* Content Wrapper */}
       <div className="relative z-10 max-w-2xl mx-auto px-6 pb-24 space-y-32">
         
-        {/* Countdown Section */}
-        <section className="pt-24 text-center">
-          <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="space-y-8"
-          >
-            <div className="flex items-center justify-center gap-4 text-primary/40">
-              <div className="h-px w-12 bg-current" />
-              <Heart size={20} className="fill-current" />
-              <div className="h-px w-12 bg-current" />
-            </div>
-            <h2 className="text-3xl sm:text-4xl font-serif text-primary italic">Counting Down to the Celebration</h2>
-            <Countdown targetDate={INVITATION_DATA.weddingDate} />
-          </motion.div>
-        </section>
-
         {/* Welcome Section */}
         <section className="space-y-12">
           <motion.div
@@ -370,6 +351,25 @@ Experience the full invitation here:
                 </a>
               </div>
             </div>
+          </motion.div>
+        </section>
+
+        {/* Countdown Section */}
+        <section className="text-center">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="space-y-8"
+          >
+            <div className="flex items-center justify-center gap-4 text-primary/40">
+              <div className="h-px w-12 bg-current" />
+              <Heart size={20} className="fill-current" />
+              <div className="h-px w-12 bg-current" />
+            </div>
+            <h2 className="text-3xl sm:text-4xl font-serif text-primary italic">Counting Down to the Celebration</h2>
+            <Countdown targetDate={INVITATION_DATA.weddingDate} />
           </motion.div>
         </section>
 
