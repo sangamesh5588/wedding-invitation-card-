@@ -211,24 +211,26 @@ Experience the full invitation here:
           </motion.div>
         </div>
 
-        {/* Scroll Down Indicator - Mouse style */}
+        {/* Scroll Down Indicator - Arrow style */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1, delay: 1.8 }}
-          className="absolute bottom-14 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-white z-10 cursor-pointer"
-          onClick={() => window.scrollBy({ top: window.innerHeight * 0.6, behavior: 'smooth' })}
+          className="absolute bottom-14 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1 text-white z-10 select-none"
+          onPointerDown={(e) => {
+            e.preventDefault();
+            const next = document.querySelector('section:nth-of-type(2)') as HTMLElement;
+            if (next) next.scrollIntoView({ behavior: 'smooth' });
+            else window.scrollBy({ top: window.innerHeight * 0.9, behavior: 'smooth' });
+          }}
         >
-          <span className="text-[10px] uppercase tracking-widest drop-shadow-md opacity-80">Scroll</span>
-          {/* Mouse outline */}
-          <div className="w-6 h-10 rounded-full border-2 border-white/70 flex justify-center pt-1.5">
-            {/* Scroll wheel dot */}
-            <motion.div
-              className="w-1 h-2 bg-white rounded-full"
-              animate={{ y: [0, 10, 0], opacity: [1, 0, 1] }}
-              transition={{ duration: 1.6, repeat: Infinity, ease: "easeInOut" }}
-            />
-          </div>
+          <span className="text-[10px] uppercase tracking-widest drop-shadow-md opacity-70">Scroll</span>
+          <motion.div
+            animate={{ y: [0, 8, 0] }}
+            transition={{ duration: 1.2, repeat: Infinity, ease: 'easeInOut' }}
+          >
+            <ChevronDown size={28} strokeWidth={1.5} className="drop-shadow-md" />
+          </motion.div>
         </motion.div>
       </section>
 
